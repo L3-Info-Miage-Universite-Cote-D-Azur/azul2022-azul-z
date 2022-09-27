@@ -2,6 +2,7 @@ package azul;
 
 import azul.joueur.Joueur;
 import azul.moteurdejeu.Azul;
+import azul.moteurdejeu.PasAssezDeJoueurException;
 import azul.vue.AfficherMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,17 +36,22 @@ class PartiesTest {
     void lancer() {
         InOrder ordre = inOrder(p);
         int nbParties = 5;
-        parties.lancer(nbParties);
-        for(int i = 0; i < nbParties; i++){
-            ordre.verify(p).initialisation();
-            ordre.verify(p).jouer();
+        try {
+            parties.lancer(nbParties);
+            for(int i = 0; i < nbParties; i++){
+                ordre.verify(p).initialisation();
+                ordre.verify(p).jouer();
+            }
+
+            nbParties = 500;
+            parties.lancer(nbParties);
+            for(int i = 0; i < nbParties; i++){
+                ordre.verify(p).initialisation();
+                ordre.verify(p).jouer();
+            }
+        } catch (PasAssezDeJoueurException e) {
+            fail();
         }
 
-        nbParties = 500;
-        parties.lancer(nbParties);
-        for(int i = 0; i < nbParties; i++){
-            ordre.verify(p).initialisation();
-            ordre.verify(p).jouer();
-        }
     }
 }

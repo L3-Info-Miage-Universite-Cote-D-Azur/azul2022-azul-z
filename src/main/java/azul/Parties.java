@@ -2,6 +2,7 @@ package azul;
 
 import azul.joueur.Joueur;
 import azul.moteurdejeu.Azul;
+import azul.moteurdejeu.PasAssezDeJoueurException;
 import azul.vue.AfficherMessage;
 
 public class Parties {
@@ -26,14 +27,14 @@ public class Parties {
     }
 
 
-    public void lancer(int nbParties) {
+    public void lancer(int nbParties) throws PasAssezDeJoueurException {
         for(int i = 0; i < nbParties; i++) {
             partie.initialisation();
             partie.jouer();
         }
     }
 
-    public static final void main(String [] args) {
+    public static final void main(String [] args) throws PasAssezDeJoueurException {
         AfficherMessage vue = new AfficherMessage();
         vue.affiche("Système", "création du lancuer de parties, d'Azul et des joueurs");
         Parties toutesLesParties = new Parties(vue, new Azul(), new Joueur("j1"), new Joueur("j2"), new Joueur("j3"));

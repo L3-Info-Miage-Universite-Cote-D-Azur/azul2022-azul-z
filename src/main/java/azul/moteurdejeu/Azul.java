@@ -20,6 +20,7 @@ public class Azul {
     /**
      * dérouler d'une partie
      */
-    public void jouer() {
+    public void jouer() throws PasAssezDeJoueurException {
+        if (listeJoueurs.size() < 3) throw new PasAssezDeJoueurException();
     }
 }

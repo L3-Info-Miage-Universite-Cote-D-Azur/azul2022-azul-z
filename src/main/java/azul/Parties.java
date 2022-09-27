@@ -11,6 +11,10 @@ public class Parties {
         Joueur j2 = new Joueur("j2");
         Joueur j3 = new Joueur("j3");
 
+        partie.ajouterJoueur(j1);
+        partie.ajouterJoueur(j2);
+        partie.ajouterJoueur(j3);
+
     }
 
     public static final void main(String [] args) {
